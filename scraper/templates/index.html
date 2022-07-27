@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Retruco</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/foundation/5.0.2/css/foundation.css'>
+  <link rel='stylesheet' href='../static/css/shopping-cart.css'>
+</head>
+
+<body>
+  <div class="medium-8 columns">
+    <h1>Productos</h1>
+    <input type="text" id="search" />
+    <div class="medium-4 columns">
+      <h5>Categorías</h5>
+      <ul class="vertical menu accordion-menu" data-accordion-menu>
+        <li>
+          <a href="#">Almacén</a>
+          <ul class="menu vertical nested">
+            <li><a class="category" href="#">Aceites y vinagres</a></li>
+            <li><a class="category" href="#">Harinas</a></li>
+            <li><a class="category" href="#">Pastas</a></li>
+            <li><a class="category" href="#">Snacks</a></li>
+            <li><a class="category" href="#">Desayuno y merienda</a></li>
+            <li><a class="category" href="#">Galletitas</a></li>
+
+          </ul>
+        </li>
+        <li><a href="#">Frutas y verduras</a>
+        <ul class="menu vertical nested">
+          <li><a href="#">Frutas</a></li>
+          <li><a href="#">Verduras</a></li>
+        </ul></li>
+        <li><a href="#">Bebidas</a>
+          <ul class="menu vertical nested">
+            <li><a class="category" href="#">Cervezas</a></li>
+            <li><a class="category" href="#">Vinos</a></li>
+            <li><a class="category" href="#">Jugos</a></li>
+            <li><a class="category" href="#">Gaseosas</a></li>
+          </ul></li>
+        <li><a href="#">Carnes</a>
+          <ul class="menu vertical nested">
+            <li><a class="category" href="#">Carne vacuna</a></li>
+            <li><a class="category" href="#">Carne de cerdo</a></li>
+            <li><a class="category" href="#">Pollo</a></li>
+          </ul></li>
+        
+      </ul>
+      <div id="loading" style="display: none">
+        <img id="loading-image" src="../static/img/loading.gif" width="50" height="50" alt="Loading..." />
+      </div>
+      <div id="alert">
+      </div>
+    </div>
+  </div>
+
+
+  <div id="result">{% include '_product.html' %}</div>
+  {% block content %}
+  {% endblock %}
+
+  <script src="../static/jquery.min.js"></script>
+  <script src="../static/js/vendor/what-input.js"></script>
+  <script src="../static/js/vendor/foundation.js"></script>
+  <script src="../static/js/app.js"></script>
+
+  <script src="../static/script.js""></script>
+</body>
+</html>
