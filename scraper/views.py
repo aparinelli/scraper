@@ -5,9 +5,11 @@ from unicodedata import category
 import uuid
 
 from numpy import mat
+import sqlalchemy
 from scraper import app, db
 from flask import jsonify, render_template, request, redirect, url_for
 from scraper.models import Product
+from sqlalchemy import desc
 
 from scraper.store_spiders.spiders.jumbo_spider import JumboSpider
 from scraper.store_spiders.spiders.coto_spider import CotoSpider
@@ -35,8 +37,7 @@ def load_category():
 @app.route('/live-search', methods=['POST'])
 def live_search():
     data = request.get_json()   
-    results = Product.query.filter(Product.name.contains(data['query'])).distinct()
-    print(data['query'], results)
+    results = Product.query.filter(Product.name.contains(data['query'])).order_by(desc(Product.price)).all()
     return jsonify({'html': render_template('_product.html', products=results)})
 
 def scrape(category):
@@ -55,7 +56,8 @@ def scrape(category):
                 name = x['Producto'],
                 price = x['Precio'],
                 category = category,
-                store = spider_name
+                store = spider_name,
+                img = x['Imagen']
             )
 
             db.session.add(product)

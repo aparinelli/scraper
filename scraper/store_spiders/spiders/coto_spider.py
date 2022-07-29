@@ -45,6 +45,10 @@ class CotoSpider(scrapy.Spider):
             price[1] = price[1].replace('\n', '')
             price[1] = price[1].replace('\t', '')
             price[1] = price[1].replace(' ', '')
-            yield {'Producto': name, 'Precio': price[1]}
+            price[1] = price[1].replace('$', '')
+            price[1] = price[1].replace(',', '.')
+
+            img = product.xpath('.//span[@class="atg_store_productImage"]//img/@src').extract_first()
+            yield {'Producto': name, 'Precio': float(price[1]), 'Imagen': img}
         
 

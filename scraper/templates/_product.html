@@ -3,9 +3,9 @@
     {% for product in products %}
         {% if product.store == 'Jumbo' %}
             <div class="product medium-4 columns">
-                <img src="../static/img/placeholder.png" />
+                <img src="{{ product.img }}" />
                 <h4>{{product.name}}</h4>
-                <h4>{{product.price}}</h4>
+                <h4><strong>{{product.price}}</strong></h4>
             </div>
         {% endif %}
     {% endfor %}
@@ -15,9 +15,9 @@
     {% for product in products %}
         {% if product.store == 'Coto' %}
             <div class="product medium-4 columns">
-                <img src="../static/img/placeholder.png" />
+                <img src="{{ product.img }}" />
                 <h4>{{product.name}}</h4>
-                <h4>{{product.price}}</h4>
+                <h4><strong>{{product.price}}</strong></h4>
             </div>
         {% endif %}
     {% endfor %}

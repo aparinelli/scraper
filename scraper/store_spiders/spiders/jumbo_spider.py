@@ -46,6 +46,9 @@ class JumboSpider(scrapy.Spider):
             for product in list: 
                 name = product.xpath('.//a[@class="product-item__name"]/text()').get()
                 price = product.xpath('.//span[@class="product-prices__value product-prices__value--best-price"]/text()').get()
+                price = price.replace('$', '')
+                price = price.replace(',', '.')
 
-                yield {'Producto': name, 'Precio': price}
+                img = product.xpath('.//a[@class="product-item__image-link"]//img/@src').extract_first()
+                yield {'Producto': name, 'Precio': float(price), 'Imagen': img}
 

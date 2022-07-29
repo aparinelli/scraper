@@ -8,4 +8,4 @@ class Product(db.Model):
     price = db.Column(db.String(20), nullable = True)
     category = db.Column(db.String(20), nullable = False)
     store = db.Column(db.String(10), nullable = False)
-
+    img = db.Column(db.String(200), nullable=False)
