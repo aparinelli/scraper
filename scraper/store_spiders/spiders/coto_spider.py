@@ -1,12 +1,5 @@
 import scrapy
-
-class CotoSpider(scrapy.Spider):
-    name = 'coto'
-    start_urls = []
-
-    custom_settings = {"FEEDS": {"coto_out.json": {"format": "json", "overwrite": True}}, "CLOSESPIDER_TIMEOUT": 15}
-
-    url_lookup_dict = {
+url_lookup_dict = {
         'Galletitas': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-almac%C3%A9n-panaderia-galletitas/_/N-10z239c?Dy=1&Nf=product.endDate%7CGTEQ%2B1.6587072E12%7C%7Cproduct.startDate%7CLTEQ%2B1.6587072E12&Nr=AND(product.sDisp_200%3A1004%2Cproduct.language%3Aespa%C3%B1ol%2COR(product.siteId%3ACotoDigital))'],
         'Cereales': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-almac%C3%A9n-cereales/_/N-ukd5id'],
         'Pastas': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-almac%C3%A9n-pasta-seca-lista-y-rellenas/_/N-tvb9c7'],
@@ -19,8 +12,15 @@ class CotoSpider(scrapy.Spider):
         'Jugos': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-bebidas-bebidas-sin-alcohol-jugos/_/N-11la5tu']
     }
 
+class CotoSpider(scrapy.Spider):
+    name = 'coto'
+    start_urls = []
+
+    custom_settings = {"FEEDS": {"coto_out.json": {"format": "json", "overwrite": True}}, "CLOSESPIDER_TIMEOUT": 15}
+
+    
     def __init__(self, category='', **kwargs):
-        self.start_urls = self.url_lookup_dict[category]
+        self.start_urls = url_lookup_dict[category]
         super().__init__(**kwargs)
 
     def parse(self, response):

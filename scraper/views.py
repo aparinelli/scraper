@@ -13,26 +13,34 @@ from sqlalchemy import desc
 
 from scraper.store_spiders.spiders.jumbo_spider import JumboSpider
 from scraper.store_spiders.spiders.coto_spider import CotoSpider
+from scraper.store_spiders.spiders.coto_spider import url_lookup_dict
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    products = Product.query.all()
-    if products == []:
-        
+    if request.method == 'POST':
         products = Product.query.all()
+        return {'html': render_template('_product.html', products = products)}
+    else: 
+        return render_template('index.html')
 
-    return render_template('index.html')
+@app.route('/update-database', methods=['POST'])
+def update_database():
+    Product.query.delete()
+    global category
+    for category in url_lookup_dict:
+        category = category
+        scrape()
+        print('FINISHED SCRAPING CATEGORY ', category)
+        print('OUTPUTDATA IS: ')
+    
+    products = Product.query.all()
+    return {'html': render_template('_product.html', products = products)}
 
 @app.route('/load-category', methods=['POST'])
 def load_category():
     data = request.get_json()
-    lookup = Product.query.filter(Product.category == data['category']).first()
-
-    if (lookup == None):
-        scrape(data['category'])
-        return jsonify({"alert": f"Successfully loaded {data['category']}"})
-    else:
-        return jsonify({"alert": f"{data['category']} is already in database"})
+    lookup = Product.query.filter(Product.category==data['category']).all()
+    return jsonify({"alert": f"Successfully loaded {data['category']}", 'html': render_template('_product.html', products=lookup)})
 
 @app.route('/live-search', methods=['POST'])
 def live_search():
@@ -40,7 +48,7 @@ def live_search():
     results = Product.query.filter(Product.name.contains(data['query'])).order_by(desc(Product.price)).all()
     return jsonify({'html': render_template('_product.html', products=results)})
 
-def scrape(category):
+def scrape():
     global output_data
     spiders = {'Jumbo': JumboSpider, 'Coto': CotoSpider}
     
@@ -50,7 +58,6 @@ def scrape(category):
         print('CURRENT SPIDER IS ' + spider_name)
         scrape_with_crochet(spider, category = category)
         time.sleep(10)
-        print(output_data)
         for x in output_data:
             product = Product(
                 name = x['Producto'],
@@ -59,11 +66,9 @@ def scrape(category):
                 store = spider_name,
                 img = x['Imagen']
             )
-
             db.session.add(product)
             db.session.commit()
         
-    
     return jsonify(output_data)
 
 from scrapy import signals
@@ -83,3 +88,4 @@ def scrape_with_crochet(currentSpider, category):
 
 def _crawler_result(item):
     output_data.append(dict(item))
+    

@@ -24,8 +24,10 @@ class JumboSpider(scrapy.Spider):
             'Pollo': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f4%2f60%2f&O=OrderByScoreDESC'
         }
 
+    category=""
+
     def __init__(self, category = '', **kwargs):
-        self.base_urls.append(self.url_lookup_dict[category])
+        self.base_urls = [self.url_lookup_dict[category]]
         super().__init__(**kwargs)
 
     
