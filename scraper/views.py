@@ -26,8 +26,6 @@ def update_database():
     for category in url_lookup_dict:
         category = category
         scrape()
-        print('FINISHED SCRAPING CATEGORY ', category)
-    
     products = Product.query.all()
     return {'html': render_template('_product.html', products = products)}
 
@@ -62,9 +60,11 @@ def scrape():
 
     for spider_name, spider in spiders.items():
         output_data = []
-        print('CURRENT SPIDER IS ' + spider_name)
         scrape_with_crochet(spider, category = category)
-        time.sleep(2)
+        time.sleep(3)
+        print('CURRENT SPIDER IS ' + spider_name)
+        print('CURRENT CATEGORY IS ' + category)
+        print(output_data)
         for x in output_data:
             product = Product(
                 name = x['Producto'],

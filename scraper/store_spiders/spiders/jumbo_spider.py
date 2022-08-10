@@ -12,16 +12,12 @@ class JumboSpider(scrapy.Spider):
     url_lookup_dict = {
             'Cookies': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f1%2f21%2f158%2f&O=OrderByScoreDESC',
             'Pasta': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&=&fq=C:/1/26/&O=OrderByScoreDESC',
-            'Flour': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f1%2f23%2f&O=OrderByScoreDESC',
-            'Oil and vinager': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f1%2f17%2f&O=OrderByScoreDESC',
             'Fruits': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f3%2f48%2f&O=OrderByScoreDESC',
+            'Vegetables': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f3%2f49%2f&O=OrderByScoreDESC',
             'Soda': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f2%2f33%2f&O=OrderByScoreDESC',
             'Wine': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f2%2f45%2f&O=OrderByScoreDESC',
             'Beer': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f2%2f38%2f&O=OrderByScoreDESC',
-            'Juice': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f2%2f34%2f&O=OrderByScoreDESC',
-            'Pork meat': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f4%2f54%2f&O=OrderByScoreDESC',
             'Beef': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f4%2f55%2f&O=OrderByScoreDESC',
-            'Chicken': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f4%2f60%2f&O=OrderByScoreDESC'
         }
 
     category=""
@@ -49,6 +45,7 @@ class JumboSpider(scrapy.Spider):
                 name = product.xpath('.//a[@class="product-item__name"]/text()').get()
                 price = product.xpath('.//span[@class="product-prices__value product-prices__value--best-price"]/text()').get()
                 price = price.replace('$', '')
+                price = price.replace('.', '')
                 price = price.replace(',', '.')
 
                 img = product.xpath('.//a[@class="product-item__image-link"]//img/@src').extract_first()

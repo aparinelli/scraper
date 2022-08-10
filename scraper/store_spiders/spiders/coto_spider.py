@@ -7,10 +7,7 @@ url_lookup_dict = {
         'Soda': ['http://api.cotodigital.com.ar/sitios/cdigi/browse/catalogo-Beverage-Beverage-sin-alcohol-Soda/_/N-n4l4r5'],
         'Wine': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-Beverage-Beverage-con-alcohol-Wine/_/N-uqiqtm'],
         'Beer': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-Beverage-Beverage-con-alcohol-cerveza/_/N-137sk0z'],
-        'Juice': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-Beverage-Beverage-sin-alcohol-Juice/_/N-11la5tu'],
         'Beef': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-frescos-carniceria-Meat/_/N-1uhue0v'],
-        'Pork meat': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-frescos-carniceria/_/N-176whnp'],
-        'Chicken': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-frescos-aves/_/N-6drhk5'] 
     }
 
 class CotoSpider(scrapy.Spider):
