@@ -1,12 +1,12 @@
 $(document).foundation();
 $(document).ready(function () {
-    $.ajax({
-        type: 'POST',
-        url: '/',
-        success: function (response) {
-            result.innerHTML = response.html
-        }
-    })
+    // $.ajax({
+    //     type: 'POST',
+    //     url: '/',
+    //     success: function (response) {
+    //         result.innerHTML = response.html
+    //     }
+    // })
 
     const searchbar = document.getElementById('search');
     const result = document.getElementById('result')

@@ -1,15 +1,10 @@
-import json
-from math import prod
-from nis import match
-from unicodedata import category
-import uuid
-
-from numpy import mat
-import sqlalchemy
+import re
 from scraper import app, db
-from flask import jsonify, render_template, request, redirect, url_for
+from flask import jsonify, render_template, request, redirect, url_for, session
 from scraper.models import Product
+from scraper.models import User
 from sqlalchemy import desc
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from scraper.store_spiders.spiders.jumbo_spider import JumboSpider
 from scraper.store_spiders.spiders.coto_spider import CotoSpider
@@ -17,11 +12,12 @@ from scraper.store_spiders.spiders.coto_spider import url_lookup_dict
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    print(session)
     if request.method == 'POST':
         products = Product.query.all()
         return {'html': render_template('_product.html', products = products)}
     else: 
-        return render_template('index.html')
+        return render_template('main.html')
 
 @app.route('/update-database', methods=['POST'])
 def update_database():
@@ -31,7 +27,6 @@ def update_database():
         category = category
         scrape()
         print('FINISHED SCRAPING CATEGORY ', category)
-        print('OUTPUTDATA IS: ')
     
     products = Product.query.all()
     return {'html': render_template('_product.html', products = products)}
@@ -48,6 +43,18 @@ def live_search():
     results = Product.query.filter(Product.name.contains(data['query'])).order_by(desc(Product.price)).all()
     return jsonify({'html': render_template('_product.html', products=results)})
 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        user = User.query.filter_by(name = request.form['username']).first()
+        if user == None:
+            user = User(name = request.form['username'], password = generate_password_hash(request.form['password']))
+            db.session.add(user)
+            db.session.commit()
+
+            return redirect('/')
+    return render_template('register.html')
+
 def scrape():
     global output_data
     spiders = {'Jumbo': JumboSpider, 'Coto': CotoSpider}
@@ -57,7 +64,7 @@ def scrape():
         output_data = []
         print('CURRENT SPIDER IS ' + spider_name)
         scrape_with_crochet(spider, category = category)
-        time.sleep(10)
+        time.sleep(2)
         for x in output_data:
             product = Product(
                 name = x['Producto'],

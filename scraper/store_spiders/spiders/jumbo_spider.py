@@ -1,27 +1,27 @@
 import scrapy
 
-GASEOSAS_URL = 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&=&fq=C:/2/33/&O=OrderByScoreDESC'
-CARNES_URL = 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&=&fq=C:/4/55/&O=OrderByScoreDESC'
-FRUTAS_URL = 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f3%2f48%2f221%2f&O=OrderByScoreDESC' 
+Soda_URL = 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&=&fq=C:/2/33/&O=OrderByScoreDESC'
+Meat_URL = 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&=&fq=C:/4/55/&O=OrderByScoreDESC'
+Fruits_URL = 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f3%2f48%2f221%2f&O=OrderByScoreDESC' 
 
 class JumboSpider(scrapy.Spider):
     name = "jumbo"
-    custom_settings = {"FEEDS": {"jumbo_out.json": {"format": "json", "overwrite": True}}, "CLOSESPIDER_TIMEOUT": 15}
+    custom_settings = {"FEEDS": {"jumbo_out.json": {"format": "json", "overwrite": True}}, "CLOSESPIDER_TIMEOUT": 2}
     base_urls = []
 
     url_lookup_dict = {
-            'Galletitas': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f1%2f21%2f158%2f&O=OrderByScoreDESC',
-            'Pastas': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&=&fq=C:/1/26/&O=OrderByScoreDESC',
-            'Harinas': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f1%2f23%2f&O=OrderByScoreDESC',
-            'Aceites y vinagres': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f1%2f17%2f&O=OrderByScoreDESC',
-            'Frutas': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f3%2f48%2f&O=OrderByScoreDESC',
-            'Gaseosas': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f2%2f33%2f&O=OrderByScoreDESC',
-            'Vinos': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f2%2f45%2f&O=OrderByScoreDESC',
-            'Cervezas': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f2%2f38%2f&O=OrderByScoreDESC',
-            'Jugos': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f2%2f34%2f&O=OrderByScoreDESC',
-            'Carne de cerdo': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f4%2f54%2f&O=OrderByScoreDESC',
-            'Carne vacuna': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f4%2f55%2f&O=OrderByScoreDESC',
-            'Pollo': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f4%2f60%2f&O=OrderByScoreDESC'
+            'Cookies': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f1%2f21%2f158%2f&O=OrderByScoreDESC',
+            'Pasta': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&=&fq=C:/1/26/&O=OrderByScoreDESC',
+            'Flour': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f1%2f23%2f&O=OrderByScoreDESC',
+            'Oil and vinager': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f1%2f17%2f&O=OrderByScoreDESC',
+            'Fruits': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f3%2f48%2f&O=OrderByScoreDESC',
+            'Soda': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f2%2f33%2f&O=OrderByScoreDESC',
+            'Wine': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f2%2f45%2f&O=OrderByScoreDESC',
+            'Beer': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f2%2f38%2f&O=OrderByScoreDESC',
+            'Juice': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f2%2f34%2f&O=OrderByScoreDESC',
+            'Pork meat': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f4%2f54%2f&O=OrderByScoreDESC',
+            'Beef': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f4%2f55%2f&O=OrderByScoreDESC',
+            'Chicken': 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f4%2f60%2f&O=OrderByScoreDESC'
         }
 
     category=""

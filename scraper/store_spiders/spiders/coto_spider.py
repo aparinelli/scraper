@@ -1,18 +1,18 @@
 import scrapy
 url_lookup_dict = {
-        'Galletitas': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-almac%C3%A9n-panaderia-galletitas/_/N-10z239c?Dy=1&Nf=product.endDate%7CGTEQ%2B1.6587072E12%7C%7Cproduct.startDate%7CLTEQ%2B1.6587072E12&Nr=AND(product.sDisp_200%3A1004%2Cproduct.language%3Aespa%C3%B1ol%2COR(product.siteId%3ACotoDigital))'],
+        'Cookies': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-almac%C3%A9n-panaderia-Cookies/_/N-10z239c?Dy=1&Nf=product.endDate%7CGTEQ%2B1.6587072E12%7C%7Cproduct.startDate%7CLTEQ%2B1.6587072E12&Nr=AND(product.sDisp_200%3A1004%2Cproduct.language%3Aespa%C3%B1ol%2COR(product.siteId%3ACotoDigital))'],
         'Cereales': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-almac%C3%A9n-cereales/_/N-ukd5id'],
-        'Pastas': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-almac%C3%A9n-pasta-seca-lista-y-rellenas/_/N-tvb9c7'],
-        'Harinas': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-almac%C3%A9n-harinas/_/N-842qrm'],
-        'Aceites y vinagres': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-almac%C3%A9n-aceites-y-condimentos/_/N-18r69ct'],
-        'Frutas': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-frescos-frutas-y-verduras-frutas/_/N-1edtocx?Nf=product.endDate%7CGTEQ+1.6570656E12%7C%7Cproduct.startDate%7CLTEQ+1.6566336E12%7C%7Cproduct.startDate%7CLTEQ+1.6570656E12%7C%7Cproduct.endDate%7CGTEQ+1.6566336E12&No=0&Nr=AND%28product.language%3Aespa%C3%B1ol%2Cproduct.sDisp_200%3A1004%2COR%28product.siteId%3ACotoDigital%29%29&Nrpp=48'],
-        'Verduras': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-frescos-frutas-y-verduras-verduras/_/N-1vh8n7u;jsessionid=XHBfRbtH1Zyt-9fH7a-foICp1vXfMp1P3NXxjJhrZulN8OgXvLHy!1129442141!-269144473?Nf=product.endDate%7CGTEQ+1.6593984E12%7C%7Cproduct.startDate%7CLTEQ+1.6593984E12&Nr=AND%28product.sDisp_200%3A1004%2Cproduct.language%3Aespa%C3%B1ol%2COR%28product.siteId%3ACotoDigital%29%29'],
-        'Gaseosas': ['http://api.cotodigital.com.ar/sitios/cdigi/browse/catalogo-bebidas-bebidas-sin-alcohol-gaseosas/_/N-n4l4r5'],
-        'Vinos': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-bebidas-bebidas-con-alcohol-vinos/_/N-uqiqtm'],
-        'Cervezas': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-bebidas-bebidas-con-alcohol-cerveza/_/N-137sk0z'],
-        'Jugos': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-bebidas-bebidas-sin-alcohol-jugos/_/N-11la5tu'],
-        'Carne vacuna': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-frescos-carniceria-carnes/_/N-1uhue0v'],
-        'Pollo': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-frescos-aves/_/N-6drhk5'] 
+        'Pasta': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-almac%C3%A9n-pasta-seca-lista-y-rellenas/_/N-tvb9c7'],
+        'Flour': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-almac%C3%A9n-Flour/_/N-842qrm'],
+        'Oil and vinager': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-almac%C3%A9n-aceites-y-condimentos/_/N-18r69ct'],
+        'Fruits': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-frescos-Fruits-y-Vegetables-Fruits/_/N-1edtocx?Nf=product.endDate%7CGTEQ+1.6570656E12%7C%7Cproduct.startDate%7CLTEQ+1.6566336E12%7C%7Cproduct.startDate%7CLTEQ+1.6570656E12%7C%7Cproduct.endDate%7CGTEQ+1.6566336E12&No=0&Nr=AND%28product.language%3Aespa%C3%B1ol%2Cproduct.sDisp_200%3A1004%2COR%28product.siteId%3ACotoDigital%29%29&Nrpp=48'],
+        'Vegetables': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-frescos-Fruits-y-Vegetables-Vegetables/_/N-1vh8n7u;jsessionid=XHBfRbtH1Zyt-9fH7a-foICp1vXfMp1P3NXxjJhrZulN8OgXvLHy!1129442141!-269144473?Nf=product.endDate%7CGTEQ+1.6593984E12%7C%7Cproduct.startDate%7CLTEQ+1.6593984E12&Nr=AND%28product.sDisp_200%3A1004%2Cproduct.language%3Aespa%C3%B1ol%2COR%28product.siteId%3ACotoDigital%29%29'],
+        'Soda': ['http://api.cotodigital.com.ar/sitios/cdigi/browse/catalogo-Beverage-Beverage-sin-alcohol-Soda/_/N-n4l4r5'],
+        'Wine': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-Beverage-Beverage-con-alcohol-Wine/_/N-uqiqtm'],
+        'Beer': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-Beverage-Beverage-con-alcohol-cerveza/_/N-137sk0z'],
+        'Juice': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-Beverage-Beverage-sin-alcohol-Juice/_/N-11la5tu'],
+        'Beef': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-frescos-carniceria-Meat/_/N-1uhue0v'],
+        'Chicken': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-frescos-aves/_/N-6drhk5'] 
     }
 
 class CotoSpider(scrapy.Spider):
