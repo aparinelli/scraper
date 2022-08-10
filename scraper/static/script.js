@@ -1,17 +1,21 @@
 $(document).foundation();
 $(document).ready(function () {
-    // $.ajax({
-    //     type: 'POST',
-    //     url: '/',
-    //     success: function (response) {
-    //         result.innerHTML = response.html
-    //     }
-    // })
+    // Get all categories available
+    var CATEGORIES;
+    $.ajax({
+        type: 'POST',
+        url: '/get-categories',
+        success: function (response) {
+            CATEGORIES = Object.keys(response)
+        }
+    })
+    
 
+    // Update html every time the text input changes
     const searchbar = document.getElementById('search');
     const result = document.getElementById('result')
     searchbar.addEventListener('keyup', function(e) {
-        query = e.target.value
+        var query = e.target.value
         $.ajax({
             type: 'POST',
             url: '/live-search',
@@ -23,10 +27,9 @@ $(document).ready(function () {
         })
     })
 
-    
+    // Load category based on the <a>'s innerHTML
     const categoryLinks = document.getElementsByClassName('category')
-    const loadingGif = document.getElementById('loading')
-    const alert = document.getElementById('alert')    
+    const loadingGif = document.getElementById('loading')  
 
     for (var i = 0; i < categoryLinks.length; i++) {
         categoryLinks[i].addEventListener('click', function(e) {
@@ -45,21 +48,46 @@ $(document).ready(function () {
             
         )
      }
-     const updateDatabase = document.getElementById('update-database')
+     var updateDatabase = document.getElementById('update-database')
      updateDatabase.addEventListener('click', function () {
         loadingGif.style.display = "block"
+        updateDatabase.setAttribute('disabled', 'disabled');
+
         $.ajax({
             type: 'POST',
-            url: '/update-database',
-            success: function(response) {
-                loadingGif.style.display = 'none';
-                alert.innerHTML = `<p>${response.alert}</p>`
-                setTimeout(function() {
-                    alert.innerHTML = ''
-                }, 3000)
-                result.innerHTML = response.html
+            url: '/delete-database',
+            success: function() {
+                console.log('Succesfuly deleted all database.')
+                
             }
         })
+
+        function fetchLoop(i) {
+            if (CATEGORIES.length == i) {
+                console.log('Finished fetch loop with success.')
+                loadingGif.style.display = "none"
+                updateDatabase.removeAttribute('disabled')
+                return;
+            }
+            $.ajax({
+                type: 'POST',
+                url: '/update-database',
+                data: JSON.stringify({'category': CATEGORIES[i]}),
+                contentType: 'application/json;charset=UTF-8',
+                success: function(response) {
+                    
+                },
+                complete: function() {
+                    i++
+                    fetchLoop(i)
+                    console.log(`Finished scraping category ${CATEGORIES[i]}`)
+                }
+            })
+        }
+
+        fetchLoop(0)
+        
      })
+
 
 })

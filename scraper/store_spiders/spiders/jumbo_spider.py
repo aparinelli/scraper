@@ -1,9 +1,5 @@
 import scrapy
 
-Soda_URL = 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&=&fq=C:/2/33/&O=OrderByScoreDESC'
-Meat_URL = 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&=&fq=C:/4/55/&O=OrderByScoreDESC'
-Fruits_URL = 'https://www.jumbo.com.ar/buscapagina?sl=1579df47-6ea5-4570-a858-8067a35362be&PS=18&cc=18&sm=0&PageNumber={}&&fq=C%3a%2f3%2f48%2f221%2f&O=OrderByScoreDESC' 
-
 class JumboSpider(scrapy.Spider):
     name = "jumbo"
     custom_settings = {"FEEDS": {"jumbo_out.json": {"format": "json", "overwrite": True}}, "CLOSESPIDER_TIMEOUT": 2}
