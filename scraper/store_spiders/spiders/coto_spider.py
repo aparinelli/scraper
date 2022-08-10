@@ -1,10 +1,7 @@
 import scrapy
 url_lookup_dict = {
         'Cookies': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-almac%C3%A9n-panaderia-Cookies/_/N-10z239c?Dy=1&Nf=product.endDate%7CGTEQ%2B1.6587072E12%7C%7Cproduct.startDate%7CLTEQ%2B1.6587072E12&Nr=AND(product.sDisp_200%3A1004%2Cproduct.language%3Aespa%C3%B1ol%2COR(product.siteId%3ACotoDigital))'],
-        'Cereales': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-almac%C3%A9n-cereales/_/N-ukd5id'],
         'Pasta': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-almac%C3%A9n-pasta-seca-lista-y-rellenas/_/N-tvb9c7'],
-        'Flour': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-almac%C3%A9n-Flour/_/N-842qrm'],
-        'Oil and vinager': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-almac%C3%A9n-aceites-y-condimentos/_/N-18r69ct'],
         'Fruits': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-frescos-Fruits-y-Vegetables-Fruits/_/N-1edtocx?Nf=product.endDate%7CGTEQ+1.6570656E12%7C%7Cproduct.startDate%7CLTEQ+1.6566336E12%7C%7Cproduct.startDate%7CLTEQ+1.6570656E12%7C%7Cproduct.endDate%7CGTEQ+1.6566336E12&No=0&Nr=AND%28product.language%3Aespa%C3%B1ol%2Cproduct.sDisp_200%3A1004%2COR%28product.siteId%3ACotoDigital%29%29&Nrpp=48'],
         'Vegetables': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-frescos-Fruits-y-Vegetables-Vegetables/_/N-1vh8n7u;jsessionid=XHBfRbtH1Zyt-9fH7a-foICp1vXfMp1P3NXxjJhrZulN8OgXvLHy!1129442141!-269144473?Nf=product.endDate%7CGTEQ+1.6593984E12%7C%7Cproduct.startDate%7CLTEQ+1.6593984E12&Nr=AND%28product.sDisp_200%3A1004%2Cproduct.language%3Aespa%C3%B1ol%2COR%28product.siteId%3ACotoDigital%29%29'],
         'Soda': ['http://api.cotodigital.com.ar/sitios/cdigi/browse/catalogo-Beverage-Beverage-sin-alcohol-Soda/_/N-n4l4r5'],
@@ -12,6 +9,7 @@ url_lookup_dict = {
         'Beer': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-Beverage-Beverage-con-alcohol-cerveza/_/N-137sk0z'],
         'Juice': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-Beverage-Beverage-sin-alcohol-Juice/_/N-11la5tu'],
         'Beef': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-frescos-carniceria-Meat/_/N-1uhue0v'],
+        'Pork meat': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-frescos-carniceria/_/N-176whnp'],
         'Chicken': ['https://www.cotodigital3.com.ar/sitios/cdigi/browse/catalogo-frescos-aves/_/N-6drhk5'] 
     }
 
@@ -19,7 +17,7 @@ class CotoSpider(scrapy.Spider):
     name = 'coto'
     start_urls = []
 
-    custom_settings = {"FEEDS": {"coto_out.json": {"format": "json", "overwrite": True}}, "CLOSESPIDER_TIMEOUT": 15}
+    custom_settings = {"FEEDS": {"coto_out.json": {"format": "json", "overwrite": True}}, "CLOSESPIDER_TIMEOUT": 2}
 
     
     def __init__(self, category='', **kwargs):
